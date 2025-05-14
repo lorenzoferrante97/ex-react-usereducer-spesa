@@ -1,5 +1,7 @@
 // start code
 
+import { useGlobalContext } from './context/GlobalContext';
+
 function App() {
   return (
     <>
