@@ -13,6 +13,9 @@ export default function List({ products }) {
               <p>
                 Prezzo: <span>{price.toFixed(2)}€</span>
               </p>
+              <div>
+                <button className="btn btn-primary">Aggiungi al Carrello</button>
+              </div>
             </li>
           );
         })}

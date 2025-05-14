@@ -12,7 +12,9 @@ const GlobalProvider = ({ children }) => {
     { name: 'Pasta', price: 0.7 },
   ];
 
-  const value = { products };
+  const [addedproducts, setAddedproducts] = useState([]);
+
+  const value = { products, addedproducts };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
 };

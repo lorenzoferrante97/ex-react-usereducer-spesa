@@ -8,3 +8,23 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
+
+.btn {
+  padding: 1rem 1.75rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: #000;
+  color: #fff;
+  transition: all;
+  transition-duration: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: coral;
+  color: #000;
+  cursor: pointer;
+  padding-inline: 1rem;
+}
