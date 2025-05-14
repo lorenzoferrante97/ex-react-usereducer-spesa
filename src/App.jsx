@@ -4,7 +4,9 @@ import { useGlobalContext } from './context/GlobalContext';
 import List from './components/List';
 
 function App() {
-  const { products } = useGlobalContext();
+  const { products, addedproducts } = useGlobalContext();
+
+  console.log('addedproducts: ', addedproducts);
 
   return (
     <>

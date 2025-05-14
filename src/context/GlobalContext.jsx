@@ -14,7 +14,12 @@ const GlobalProvider = ({ children }) => {
 
   const [addedproducts, setAddedproducts] = useState([]);
 
-  const value = { products, addedproducts };
+  const addToCart = (product) => {
+    const isProductAlreadyAdded = addedproducts.find((prod) => prod.name == product.name);
+    !isProductAlreadyAdded && setAddedproducts((prev) => [...prev, { ...product, quantity: 1 }]);
+  };
+
+  const value = { products, addedproducts, addToCart };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
 };

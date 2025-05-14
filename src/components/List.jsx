@@ -1,4 +1,8 @@
+import { useGlobalContext } from '../context/GlobalContext';
+
 export default function List({ products }) {
+  const { addToCart } = useGlobalContext();
+
   return (
     <>
       <ul>
@@ -6,7 +10,7 @@ export default function List({ products }) {
           const { name, price } = prod;
 
           return (
-            <li className="list-items">
+            <li key={i} className="list-items">
               <p>
                 Nome: <span>{name}</span>
               </p>
@@ -14,7 +18,9 @@ export default function List({ products }) {
                 Prezzo: <span>{price.toFixed(2)}€</span>
               </p>
               <div>
-                <button className="btn btn-primary">Aggiungi al Carrello</button>
+                <button onClick={() => addToCart(prod)} className="btn btn-primary">
+                  Aggiungi al Carrello
+                </button>
               </div>
             </li>
           );
