@@ -1,0 +1,10 @@
+.list-items {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.list-items p span {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
