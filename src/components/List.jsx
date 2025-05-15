@@ -2,7 +2,7 @@ import { useGlobalContext } from '../context/GlobalContext';
 import { useEffect } from 'react';
 
 export default function List({ products, type }) {
-  const { updateProductQuantity, removeFromCart, addedproducts, getCartTotal, cartTotal } = useGlobalContext();
+  const { updateProductQuantity, removeFromCart, addedproducts, getCartTotal, cartTotal, handleInput, isQuantityWrong, quantityInput } = useGlobalContext();
 
   useEffect(() => getCartTotal(addedproducts));
 
@@ -21,6 +21,12 @@ export default function List({ products, type }) {
                 <p>
                   Prezzo: <span>{price.toFixed(2)}€</span>
                 </p>
+                {type == 'products' && (
+                  <div>
+                    <label htmlFor="quantity">Qt.</label>
+                    <input defaultValue={1} onChange={(e) => handleInput(e)} type="number" name="quantity" id="quantity" min={1} />
+                  </div>
+                )}
                 {type == 'cart' && (
                   <p>
                     Quantità: <span>{prod.quantity}</span>
@@ -42,6 +48,7 @@ export default function List({ products, type }) {
         ) : (
           <li>Non sono presenti prodotti nella lista.</li>
         )}
+        {type == 'products' && isQuantityWrong && <p className="error-message">La quantità deve essere maggiore o uguale a 1</p>}
         {type == 'cart' && (
           <li className="total">
             Totale: <span>{cartTotal}</span>

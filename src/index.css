@@ -42,3 +42,14 @@
   transition: all;
   transition-duration: 0.3s;
 }
+
+#quantity {
+  max-width: 48px;
+  aspect-ratio: 3 / 2;
+}
+
+.error-message {
+  padding: 0.25rem 0.5rem;
+  background-color: red;
+  color: #fff;
+}

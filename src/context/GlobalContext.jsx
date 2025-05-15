@@ -14,6 +14,8 @@ const GlobalProvider = ({ children }) => {
 
   const [addedproducts, setAddedproducts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+  const [quantityInput, setQuantityInput] = useState(1);
+  const [isQuantityWrong, setIsQuantityWrong] = useState(false);
 
   // const addToCart = (product) => {
   //   const isProductAlreadyAdded = addedproducts.find((prod) => prod.name == product.name);
@@ -23,6 +25,11 @@ const GlobalProvider = ({ children }) => {
   const addToCart = (product) => setAddedproducts((prev) => [...prev, { ...product, quantity: 1 }]);
 
   const updateProductQuantity = (product) => {
+    if (quantityInput <= 0) {
+      setIsQuantityWrong(true);
+      return;
+    }
+
     const existingProductindex = addedproducts.findIndex((prod) => prod.name == product.name);
     // console.log(existingProductindex);
     if (existingProductindex != -1) {
@@ -32,6 +39,8 @@ const GlobalProvider = ({ children }) => {
     } else {
       addToCart(product);
     }
+
+    setIsQuantityWrong(false);
   };
 
   const removeFromCart = (product) => {
@@ -50,7 +59,9 @@ const GlobalProvider = ({ children }) => {
     setCartTotal(total.toFixed(2));
   };
 
-  const value = { products, addedproducts, cartTotal, addToCart, updateProductQuantity, removeFromCart, getCartTotal };
+  const handleInput = (e) => setQuantityInput(parseInt(e.target.value));
+
+  const value = { products, addedproducts, cartTotal, addToCart, updateProductQuantity, removeFromCart, getCartTotal, quantityInput, handleInput, isQuantityWrong };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
 };
