@@ -1,7 +1,10 @@
 import { useGlobalContext } from '../context/GlobalContext';
+import { useEffect } from 'react';
 
 export default function List({ products, type }) {
-  const { updateProductQuantity, removeFromCart } = useGlobalContext();
+  const { updateProductQuantity, removeFromCart, addedproducts, getCartTotal, cartTotal } = useGlobalContext();
+
+  useEffect(() => getCartTotal(addedproducts));
 
   return (
     <>
@@ -37,7 +40,12 @@ export default function List({ products, type }) {
             );
           })
         ) : (
-          <p>Non sono presenti prodotti nella lista.</p>
+          <li>Non sono presenti prodotti nella lista.</li>
+        )}
+        {type == 'cart' && (
+          <li className="total">
+            Totale: <span>{cartTotal}</span>
+          </li>
         )}
       </ul>
     </>

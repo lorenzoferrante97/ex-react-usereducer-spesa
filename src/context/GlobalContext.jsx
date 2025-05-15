@@ -13,6 +13,7 @@ const GlobalProvider = ({ children }) => {
   ];
 
   const [addedproducts, setAddedproducts] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   // const addToCart = (product) => {
   //   const isProductAlreadyAdded = addedproducts.find((prod) => prod.name == product.name);
@@ -42,7 +43,14 @@ const GlobalProvider = ({ children }) => {
     }
   };
 
-  const value = { products, addedproducts, addToCart, updateProductQuantity, removeFromCart };
+  const getCartTotal = (cart) => {
+    let total = 0;
+    cart.forEach((product) => (total += product.quantity * product.price));
+    console.log('total: ', total);
+    setCartTotal(total.toFixed(2));
+  };
+
+  const value = { products, addedproducts, cartTotal, addToCart, updateProductQuantity, removeFromCart, getCartTotal };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
 };
