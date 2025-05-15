@@ -23,7 +23,7 @@ const GlobalProvider = ({ children }) => {
 
   const updateProductQuantity = (product) => {
     const existingProductindex = addedproducts.findIndex((prod) => prod.name == product.name);
-    console.log(existingProductindex);
+    // console.log(existingProductindex);
     if (existingProductindex != -1) {
       const addedProductsCopy = structuredClone(addedproducts);
       addedProductsCopy[existingProductindex].quantity++;
@@ -33,7 +33,16 @@ const GlobalProvider = ({ children }) => {
     }
   };
 
-  const value = { products, addedproducts, addToCart, updateProductQuantity };
+  const removeFromCart = (product) => {
+    const existingProductindex = addedproducts.findIndex((prod) => prod.name == product.name);
+    if (existingProductindex != -1) {
+      const addedProductsCopy = structuredClone(addedproducts);
+      addedProductsCopy.splice(existingProductindex, 1);
+      setAddedproducts(addedProductsCopy);
+    }
+  };
+
+  const value = { products, addedproducts, addToCart, updateProductQuantity, removeFromCart };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
 };

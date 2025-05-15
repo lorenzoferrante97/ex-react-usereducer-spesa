@@ -1,7 +1,7 @@
 import { useGlobalContext } from '../context/GlobalContext';
 
 export default function List({ products, type }) {
-  const { addToCart, updateProductQuantity } = useGlobalContext();
+  const { updateProductQuantity, removeFromCart } = useGlobalContext();
 
   return (
     <>
@@ -28,7 +28,9 @@ export default function List({ products, type }) {
                     <button onClick={() => updateProductQuantity(prod)} className="btn btn-primary">
                       Aggiungi al Carrello
                     </button>
-                    <button className="btn btn-sec">Rimuovi dal Carrello</button>
+                    <button onClick={() => removeFromCart(prod)} className="btn btn-sec">
+                      Rimuovi dal Carrello
+                    </button>
                   </div>
                 )}
               </li>
