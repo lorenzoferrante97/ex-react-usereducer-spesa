@@ -14,12 +14,26 @@ const GlobalProvider = ({ children }) => {
 
   const [addedproducts, setAddedproducts] = useState([]);
 
-  const addToCart = (product) => {
-    const isProductAlreadyAdded = addedproducts.find((prod) => prod.name == product.name);
-    !isProductAlreadyAdded && setAddedproducts((prev) => [...prev, { ...product, quantity: 1 }]);
+  // const addToCart = (product) => {
+  //   const isProductAlreadyAdded = addedproducts.find((prod) => prod.name == product.name);
+  //   !isProductAlreadyAdded && setAddedproducts((prev) => [...prev, { ...product, quantity: 1 }]);
+  // };
+
+  const addToCart = (product) => setAddedproducts((prev) => [...prev, { ...product, quantity: 1 }]);
+
+  const updateProductQuantity = (product) => {
+    const existingProductindex = addedproducts.findIndex((prod) => prod.name == product.name);
+    console.log(existingProductindex);
+    if (existingProductindex != -1) {
+      const addedProductsCopy = structuredClone(addedproducts);
+      addedProductsCopy[existingProductindex].quantity++;
+      setAddedproducts(addedProductsCopy);
+    } else {
+      addToCart(product);
+    }
   };
 
-  const value = { products, addedproducts, addToCart };
+  const value = { products, addedproducts, addToCart, updateProductQuantity };
 
   return <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>;
 };
