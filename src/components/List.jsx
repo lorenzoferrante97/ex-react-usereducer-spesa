@@ -34,7 +34,7 @@ export default function List({ products, type }) {
                 )}
                 {type == 'products' && (
                   <div className="btn-box">
-                    <button onClick={() => updateProductQuantity(prod)} className="btn btn-primary">
+                    <button onClick={() => updateProductQuantity(prod, quantityInput)} className="btn btn-primary">
                       Aggiungi al Carrello
                     </button>
                     <button onClick={() => removeFromCart(prod)} className="btn btn-sec">

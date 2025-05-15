@@ -22,9 +22,9 @@ const GlobalProvider = ({ children }) => {
   //   !isProductAlreadyAdded && setAddedproducts((prev) => [...prev, { ...product, quantity: 1 }]);
   // };
 
-  const addToCart = (product) => setAddedproducts((prev) => [...prev, { ...product, quantity: 1 }]);
+  const addToCart = (product, qt) => setAddedproducts((prev) => [...prev, { ...product, quantity: qt }]);
 
-  const updateProductQuantity = (product) => {
+  const updateProductQuantity = (product, qt) => {
     if (quantityInput <= 0) {
       setIsQuantityWrong(true);
       return;
@@ -34,10 +34,10 @@ const GlobalProvider = ({ children }) => {
     // console.log(existingProductindex);
     if (existingProductindex != -1) {
       const addedProductsCopy = structuredClone(addedproducts);
-      addedProductsCopy[existingProductindex].quantity++;
+      addedProductsCopy[existingProductindex].quantity = qt;
       setAddedproducts(addedProductsCopy);
     } else {
-      addToCart(product);
+      addToCart(product, qt);
     }
 
     setIsQuantityWrong(false);
@@ -55,7 +55,7 @@ const GlobalProvider = ({ children }) => {
   const getCartTotal = (cart) => {
     let total = 0;
     cart.forEach((product) => (total += product.quantity * product.price));
-    console.log('total: ', total);
+    // console.log('total: ', total);
     setCartTotal(total.toFixed(2));
   };
 

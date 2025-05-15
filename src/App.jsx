@@ -6,7 +6,7 @@ import List from './components/List';
 function App() {
   const { products, addedproducts } = useGlobalContext();
 
-  console.log('addedproducts: ', addedproducts);
+  // console.log('addedproducts: ', addedproducts);
 
   return (
     <>
