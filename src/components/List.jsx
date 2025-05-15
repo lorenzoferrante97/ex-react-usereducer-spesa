@@ -1,6 +1,6 @@
 import { useGlobalContext } from '../context/GlobalContext';
 
-export default function List({ products }) {
+export default function List({ products, type }) {
   const { addToCart } = useGlobalContext();
 
   return (
@@ -17,11 +17,18 @@ export default function List({ products }) {
               <p>
                 Prezzo: <span>{price.toFixed(2)}€</span>
               </p>
-              <div>
-                <button onClick={() => addToCart(prod)} className="btn btn-primary">
-                  Aggiungi al Carrello
-                </button>
-              </div>
+              {type == 'cart' && (
+                <p>
+                  Quantità: <span>{prod.quantity}</span>
+                </p>
+              )}
+              {type == 'products' && (
+                <div>
+                  <button onClick={() => addToCart(prod)} className="btn btn-primary">
+                    Aggiungi al Carrello
+                  </button>
+                </div>
+              )}
             </li>
           );
         })}

@@ -12,7 +12,11 @@ function App() {
     <>
       <div>
         <h1>Lista Prodotti</h1>
-        <List products={products} />
+        <List products={products} type="products" />
+      </div>
+      <div>
+        <h2>Carrello</h2>
+        <List products={addedproducts} type="cart" />
       </div>
     </>
   );
